@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sahil Qureshi's Portfolio</title>
+  <style>
+    /* Root color variables */
+    :root {
+      --primary-blue: #4a90e2;
+      --dark-bg: #121212;
+      --dark-card-bg: #1e1e1e;
+      --light-text: #f0f4f8;
+      --hover-blue: #82b1ff;
+      --accent-blue: #3a7bd5;
+      --transition-speed: 0.3s;
+      --border-radius: 12px;
+      --shadow-light: rgba(74, 144, 226, 0.3);
+    }
+
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      transition: color var(--transition-speed);
+    }
+
+    a:hover,
+    nav a:hover {
+      color: var(--hover-blue);
+    }
+
+    header {
+      background-color: var(--primary-blue);
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px var(--shadow-light);
+      user-select: none;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 6px rgba(255 255 255 / 0.1);
+    }
+
+    header h2 {
+      margin-top: 0.4rem;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: #cde1ff;
+    }
+
+    nav {
+      background-color: var(--dark-card-bg);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      box-shadow: inset 0 -1px 0 #26323880;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+    }
+
+    nav a {
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    nav a:focus-visible,
+    nav a:hover {
+      background-color: var(--hover-blue);
+      color: var(--dark-bg);
+      outline: none;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem 1rem 4rem;
+      max-width: 1080px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    section {
+      /* section margins handled by main gap */
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid var(--primary-blue);
+      padding-bottom: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* Card styles */
+    .card {
+      background-color: var(--dark-card-bg);
+      padding: 1.6rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0 0 0 / 0.7);
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      align-items: center;
+      cursor: default;
+      user-select: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px var(--shadow-light);
+    }
+
+    /* Left image rectangle for cards */
+    .card-image {
+      width: 140px;
+      height: 100px;
+      border-radius: var(--border-radius);
+      flex-shrink: 0;
+      background-color: #3a3f47;
+      box-shadow: 0 0 20px #2a7ade22 inset;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      transition: transform var(--transition-speed);
+    }
+
+    .card-image:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 32px #5691f5aa inset;
+    }
+
+    /* Card text content */
+    .card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      color: #cde1ff;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+
+    .card-content h3 {
+      margin: 0 0 0.5rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+
+    .card-content p,
+    .card-content ul {
+      margin: 0;
+    }
+
+    /* Projects cards vertical list */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    /* Skills cards */
+    .skills-list {
+      display: flex;
+      gap: 1.6rem;
+      flex-wrap: wrap;
+      justify-content: start;
+    }
+
+    .skill-card {
+      flex-direction: row;
+      background-color: #26323840;
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      width: 320px;
+      cursor: default;
+      box-shadow: 0 3px 10px rgba(0 0 0 / 0.3);
+      transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+
+    .skill-card:hover {
+      box-shadow: 0 8px 24px var(--shadow-light);
+      transform: translateY(-6px);
+    }
+
+    .skill-icon {
+      font-size: 3rem;
+      color: var(--hover-blue);
+      user-select: none;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      color: #cde1ff;
+      font-size: 1.3rem;
+    }
+
+    /* Contact styles */
+    .contact-info {
+      flex-direction: column;
+      gap: 0.7rem;
+      font-size: 1.15rem;
+      user-select: text;
+    }
+
+    .contact-info p {
+      margin: 0;
+    }
+
+    /* Contact icons container */
+    .contact-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      fill: var(--primary-blue);
+      cursor: pointer;
+      transition: fill var(--transition-speed);
+    }
+
+    .contact-icon:hover {
+      fill: var(--hover-blue);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-blue);
+      color: white;
+      text-align: center;
+      padding: 1.4rem 1rem;
+      font-size: 0.9rem;
+      user-select: none;
+      box-shadow: 0 -2px 10px var(--shadow-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        padding: 1rem 1rem 3rem;
+        gap: 2.2rem;
+      }
+
+      .card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .card-image {
+        width: 100%;
+        height: 180px;
+        border-radius: var(--border-radius);
+        box-shadow: none;
+        transform: none !important;
+      }
+
+      .skill-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Sahil Qureshi</h1>
+    <h2>Computer Science Diploma Student</h2>
+  </header>
+
+  <nav>
+    <a href="#home" tabindex="1">Home</a>
+    <a href="#projects" tabindex="2">Projects</a>
+    <a href="#skills" tabindex="3">Skills</a>
+    <a href="#contact" tabindex="4">Contact</a>
+    <a href="#about" tabindex="5">About</a>
+  </nav>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home">
+      <h2>Welcome</h2>
+      <div class="card" tabindex="0" aria-label="Introduction card">
+        <div class="card-image"
+          style="background-image: url('https://www.shutterstock.com/image-photo/programmer-people-working-laptops-smartphones-600nw-2473384115.jpg');"
+          aria-hidden="true"></div>
+        <div class="card-content">
+          <h3>About Me</h3>
+          <p>
+            Diploma student in Software Programming with a strong interest in technology, systems thinking, and structured problem-solving. Recognized for an analytical approach, steady academic growth, and effective peer collaboration.
+            Open to learning, responsive to feedback, and focused on long-term development.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Academic achievements card">
+        <div class="card-image"
+          style="background-image: url('https://www.universalschool.org/wp-content/uploads/2016/02/Academics-1-450x350.jpg');"
+          aria-hidden="true"></div>
+        <div class="card-content">
+          <h3>Academic Achievements</h3>
+          <p>Secured 84% in first semester diploma studies and 89.60% in SSC examination. Dedicated to continuous growth.</p>
+        </div>
+      </div>
+
+      <div class="card" tabindex="0" aria-label="Interests and approach card">
+        <div class="card-image"
+          style="background-image: url('https://www.shutterstock.com/image-photo/real-image-light-bulb-exploding-600nw-2479847037.jpg');"
+          aria-hidden="true"></div>
+        <div class="card-content">
+          <h3>Approach & Interests</h3>
+          <p>Blends creativity with logic to offer balanced solutions. Focused on technology, systems thinking, and structured problem-solving with enthusiasm for peer collaboration.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-list">
+        <article class="card" tabindex="0" aria-label="Website Project card">
+          <div class="card-image"
+            style="background-image: url('https://www.foregroundweb.com/wp-content/uploads/2020/12/danielkordan.com_.jpg.webp');"></div>
+          <div class="card-content">
+            <h3><a href="https://sahilqureshi.github.io/sample-html-css-website/" target="_blank" rel="noopener noreferrer">Example HTML+CSS Website</a></h3>
+            <p>A simple, fully responsive website developed using only HTML and CSS demonstrating my front-end skills.</p>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0" aria-label="C Program project card">
+          <div class="card-image"
+            style="background-image: url('https://www.udacity.com/_next/image?url=https%3A%2F%2Fvideo.udacity-data.com%2Ftopher%2F2025%2FJanuary%2F679293ef_c-programming-plp-1456-x-817%2Fc-programming-plp-1456-x-817.jpg&w=3840&q=75');"></div>
+          <div class="card-content">
+            <h3><a href="https://github.com/sahilqureshi/c-programs" target="_blank" rel="noopener noreferrer">C Programming</a></h3>
+            <p>Diverse C programs illustrating algorithms and programming concepts for system-level coding practice.</p>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0" aria-label="Copywriting example card">
+          <div class="card-image"
+            style="background-image: url('https://www.holisticemailmarketing.com/app/uploads/2021/03/AdobeStock_233176155.jpeg');"></div>
+          <div class="card-content">
+            <h3><a href="https://example.com/copywriting" target="_blank" rel="noopener noreferrer">Copywriting Samples</a></h3>
+            <p>Email campaigns and social media captions created to demonstrate my skills in creative and strategic writing.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-list" aria-label="List of skills">
+        <div class="skill-card" tabindex="0" aria-label="Skill: Front-End Development (HTML and CSS)">
+          <div class="skill-icon" aria-hidden="true">🌐</div>
+          <div class="skill-name">Front-End Development (HTML & CSS)</div>
+        </div>
+        <div class="skill-card" tabindex="0" aria-label="Skill: C and C++ Programming">
+          <div class="skill-icon" aria-hidden="true">💻</div>
+          <div class="skill-name">C & C++ Programming</div>
+        </div>
+        <div class="skill-card" tabindex="0" aria-label="Skill: Copywriting">
+          <div class="skill-icon" aria-hidden="true">📝</div>
+          <div class="skill-name">Copywriting</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <div class="card contact-info" tabindex="0" aria-label="Contact information card" style="flex-direction: column; align-items: flex-start;">
+        <p>Email: <a href="mailto:sahilqureshi.tech@gmail.com" tabindex="0" >sahilqureshi.tech@gmail.com</a></p>
+        <p>Phone: <a href="tel:+918828551608" tabindex="0">+91 8828551608</a></p>
+        <p>Address: Unit 225, 90 Feet Avenue, Dharavi, Mumbai-400017</p>
+        <div class="contact-icons" aria-label="Social and contact icons">
+          <a href="mailto:sahilqureshi.tech@gmail.com" aria-label="Email link" tabindex="0">
+            <svg class="contact-icon" viewBox="0 0 24 24">
+              <path
+                d="M20,4H4C2.897,4,2,4.897,2,6v12c0,1.103,0.897,2,2,2h16c1.103,0,2-0.897,2-2V6 C22,4.897,21.103,4,20,4z M20,8.236l-8,5.333l-8-5.333V6l8,5.333L20,6V8.236z" />
+            </svg>
+          </a>
+          <a href="https://github.com/sahilqureshi" target="_blank" rel="noopener noreferrer" aria-label="Github" tabindex="0">
+            <svg class="contact-icon" viewBox="0 0 24 24">
+              <path
+                d="M12.026 2c-5.502 0-9.972 4.47-9.972 9.972 0 4.41 2.863 8.153 6.839 9.476.5.093.682-.217.682-.483 0-.238-.008-.868-.013-1.704-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.621.069-.609.069-.609 1.004.07 1.532 1.031 1.532 1.031.892 1.528 2.341 1.087 2.91.831.091-.646.35-1.087.636-1.338-2.22-.254-4.555-1.11-4.555-4.938 0-1.09.39-1.98 1.029-2.677-.104-.253-.446-1.28.098-2.666 0 0 .84-.268 2.75 1.025a9.51 9.51 0 0 1 2.5-.336c.848.004 1.705.114 2.5.336 1.909-1.294 2.747-1.025 2.747-1.025.545 1.386.203 2.413.1 2.666.64.697 1.028 1.587 1.028 2.677 0 3.838-2.339 4.68-4.566 4.929.358.309.678.919.678 1.853 0 1.337-.012 2.419-.012 2.75 0 .268.18.58.688.481A10.002 10.002 0 0 0 22 11.972C22 6.47 17.53 2 12.026 2z" />
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/sahilqureshi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" tabindex="0">
+            <svg class="contact-icon" viewBox="0 0 24 24">
+              <path
+                d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8 19v-8M8 9v-.01M8 11h3v8H8v-8Zm5 4c0-3 3-2.9 3-6 0-2.6-1.5-4-4-4s-4 1.5-4 4v8h3v-8c0-1.5 1-2 2-2s2 .5 2 2 0 3-3 3Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="card" tabindex="0" aria-label="About me detailed information">
+        <div class="card-image"
+          style="background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjEwMTYtYy0wOF8xLWtzaDZtemEzLmpwZw.jpg');"></div>
+        <div class="card-content" style="font-size: 1.15rem; line-height: 1.5; letter-spacing: 0.02em;">
+          <p><strong>Hello! I'm Sahil Qureshi, a passionate Diploma student specializing in Software Programming at M. H.
+              Saboo Siddik Polytechnic.</strong></p>
+          <p>Throughout my academic journey, I have maintained strong grades, securing 84% in my first semester and 89.60%
+            in my secondary school certificate examination. I focus on analytical thinking and problem-solving, blending
+            creativity with logic to provide balanced and well-thought-out solutions.</p>
+          <p>My key interests lie in technology, especially front-end development, programming in C and C++, and
+            copywriting. I enjoy working on projects that challenge me to think systemically and methodically.</p>
+          <p>Known for effective peer collaboration and responsiveness to feedback, I always strive for long-term growth and
+            am eager to learn new skills. Outside of academics, I am intrigued by emerging technologies and keen to
+            contribute to impactful projects that make a difference.</p>
+          <p>In addition to technical capabilities, I have a flair for creative writing, showcased through my copywriting
+            projects, such as email campaigns and social media captions, blending marketing strategy with compelling
+            content.</p>
+          <p>Feel free to explore my projects and contact me for any opportunities or collaborations.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Sahil Qureshi. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
+
+
